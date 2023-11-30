@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the transformed data from your local CSV file
-df = pd.read_csv('transformed_books_ data.csv')
+df = pd.read_csv('transformed_books_data.csv')
 
 # Descriptive Analytics
 st.title('Book Information Analysis')
