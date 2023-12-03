@@ -1,10 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Disable use_inf_as_null option
-pd.set_option('mode.use_inf_as_null', False)
+import plotly.express as px
 
 # Load the CSV file into a Pandas DataFrame
 csv_file_path = 'transformed_books_data.csv'
@@ -75,25 +71,33 @@ st.markdown('<hr style="border:1px solid #483D8B">', unsafe_allow_html=True)
 st.subheader("Graphs Section")
 
 # Count of books per rating
-fig1, ax1 = plt.subplots()
-ax1.pie(df_selection['Rating'].value_counts(), labels=df_selection['Rating'].unique(), autopct='%1.1f%%', startangle=90)
-ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-st.pyplot(fig1)
+fig1 = px.pie(
+    df_selection,
+    names='Rating',
+    title='Distribution of Rating',
+    labels={'Rating': 'Rating'},
+)
 
 # Line to segregate graphs
 st.markdown('<hr style="border:1px solid #483D8B">', unsafe_allow_html=True)
 
 # Price distribution
-fig2, ax2 = plt.subplots()
-sns.histplot(data=df_selection, x='Price', kde=True, ax=ax2)
-st.pyplot(fig2)
+fig2 = px.histogram(df_selection, x='Price', nbins=20, labels={'Price': 'Price'}, title='Distribution of Prices')
 
 # Line to segregate graphs
 st.markdown('<hr style="border:1px solid #483D8B">', unsafe_allow_html=True)
 
 # Top 10 Best Rated Books
 best_rated_books = df_selection.sort_values('Rating', ascending=False).head(10)
-fig3, ax3 = plt.subplots()
-sns.barplot(data=best_rated_books, x='Title', y='Rating', ax=ax3)
-ax3.set_xticklabels(ax3.get_xticklabels(), rotation=45, ha='right')
-st.pyplot(fig3)
+fig3 = px.bar(
+    best_rated_books,
+    x='Title',
+    y='Rating',
+    title="<b>Top 10 Best Rated Books</b>"
+)
+fig3.update_layout(xaxis_tickangle=-45)
+
+# Display Graphs
+st.plotly_chart(fig1, use_container_width=True)
+st.plotly_chart(fig2, use_container_width=True)
+st.plotly_chart(fig3, use_container_width=True)
