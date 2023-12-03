@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
+
+# Disable use_inf_as_null option
+pd.set_option('mode.use_inf_as_null', False)
 
 # Load the CSV file into a Pandas DataFrame
 csv_file_path = 'transformed_books_data.csv'
