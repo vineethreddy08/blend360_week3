@@ -46,7 +46,7 @@ with metrics_col1:
 with metrics_col2:
     st.metric("Books available", total_books)
     st.metric("Avg. price of books", f"${round(average_price, 2)}")
-    st.metric("Cost of inventory", f"${round(total_cost, 2)}")
+    st.metric("Cost of Goods Sold", f"${round(total_cost, 2)}")
 
 # Line to segregate metrics and tables
 st.markdown('<hr style="border:1px solid #483D8B">', unsafe_allow_html=True)
