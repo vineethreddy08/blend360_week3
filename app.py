@@ -52,7 +52,7 @@ with metrics_col2:
 st.markdown('<hr style="border:1px solid #483D8B">', unsafe_allow_html=True)
 
 # Table Section
-st.subheader("Top 10 Cheapest Books in the Rating Selected")
+st.subheader("Most Affordable Books in the store")
 top_cheapest_books = df_selection.sort_values('Price').head(10)[['Title', 'Rating', 'Price']]
 st.table(top_cheapest_books)
 
@@ -60,7 +60,7 @@ st.table(top_cheapest_books)
 st.markdown('<hr style="border:1px solid #483D8B">', unsafe_allow_html=True)
 
 # Top 10 Costliest Books
-st.subheader("Top 10 Costliest Books in the Rating Selected")
+st.subheader("10 Most expensive Books in the store")
 top_costliest_books = df_selection.sort_values('Price', ascending=False).head(10)[['Title', 'Rating', 'Price']]
 st.table(top_costliest_books)
 
